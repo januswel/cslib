@@ -6,6 +6,8 @@
  * This source code is in public domain, and has NO WARRANTY.
  * */
 
+using System;
+
 namespace Utility.Data
 {
     /// <summary>
@@ -13,13 +15,15 @@ namespace Utility.Data
     /// </summary>
     /// <typeparam name="T">first type</typeparam>
     /// <typeparam name="U">second type</typeparam>
-    public class Pair<T, U> : System.IEquatable<Pair<T, U>>
+    public class Pair<T, U> : IEquatable<Pair<T, U>>, IComparable<Pair<T, U>>
+        where T : IComparable<T>
+        where U : IComparable<U>
     {
         /// <summary>
         /// accessor for first element
         /// </summary>
         public T First { get; set; }
-        
+
         /// <summary>
         /// accessor for second element
         /// </summary>
@@ -69,6 +73,19 @@ namespace Utility.Data
         public override int GetHashCode()
         {
             return this.First.GetHashCode() ^ this.Second.GetHashCode();
+        }
+        
+        /// <summary>
+        /// compare to other object
+        /// </summary>
+        /// <param name="other">target to compare</param>
+        /// <returns>negative value if "this" is lower than "other", positive value if "this" is higher than "other", otherwise 0</returns>
+        public int CompareTo(Pair<T, U> other)
+        {
+            int firstOrder = this.First.CompareTo(other.First);
+            return (firstOrder != 0)
+                ? firstOrder
+                : this.Second.CompareTo(other.Second);
         }
     }
 }
