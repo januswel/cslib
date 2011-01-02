@@ -1,6 +1,6 @@
 ﻿/*
- * CircularArray.cs
- *  circular array
+ * RingBuffer.cs
+ *  ring buffer
  *
  * by janus_wel<janus.wel.3@gmail.com>
  * This source code is in public domain, and has NO WARRANTY.
@@ -13,10 +13,10 @@ using System.Collections;           // for IEnumerator
 namespace Utility.Data
 {
     /// <summary>
-    /// circular array class
+    /// ring buffer class
     /// </summary>
     /// <typeparam name="T">a type to handle</typeparam>
-    public class CircularArray<T> : ICollection<T>, IEnumerable<T>
+    public class RingBuffer<T> : ICollection<T>, IEnumerable<T>
     {
         /// <summary>
         /// default length
@@ -34,7 +34,7 @@ namespace Utility.Data
 
         /// <summary>
         /// length
-        /// This value shows the length of array.
+        /// This value shows the length of buffer.
         /// </summary>
         protected readonly int length;
 
@@ -52,24 +52,24 @@ namespace Utility.Data
         protected T[] elements;
 
         /// <summary>
-        /// a variable to indicate head position of array.
+        /// a variable to indicate head position of buffer.
         /// </summary>
         protected int head = 0;
 
         /// <summary>
-        /// a variable to indicate foot position of array.
+        /// a variable to indicate foot position of buffer.
         /// </summary>
         protected int foot = 0;
 
         /// <summary>
-        /// a variable to indicate a number of items in an array.
+        /// a variable to indicate a number of items in an buffer.
         /// </summary>
         protected int count = 0;
 
         /// <summary>
         /// default constructor
         /// </summary>
-        public CircularArray()
+        public RingBuffer()
         {
             this.length = this.DefaultLength;
             this.elements = new T[length];
@@ -78,8 +78,8 @@ namespace Utility.Data
         /// <summary>
         /// parameter constructor
         /// </summary>
-        /// <param name="length">a length of array</param>
-        public CircularArray(int length)
+        /// <param name="length">a length of buffer</param>
+        public RingBuffer(int length)
         {
             this.length = length;
             this.elements = new T[length];
