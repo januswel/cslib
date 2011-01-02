@@ -8,6 +8,10 @@
 
 namespace Utility.Data
 {
+    /// <summary>
+    /// fixed queue class
+    /// </summary>
+    /// <typeparam name="T">a type to handle</typeparam>
     public class FixedQueue<T> : System.Collections.Generic.Queue<T>
     {
         /// <summary>
